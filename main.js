@@ -22,19 +22,16 @@ function playRound(playerSelection, computerSelection) {
 
     // Player Draw
     if (playerSelection === computerSelection) {
-        // return `You both have ${playerSelection}. It's a Draw.`
         return 'DRAW'
     }
     // Player Win
     else if ((playerSelection === 'ROCK' && computerSelection === 'SCISSORS')
         || (playerSelection === 'PAPER' && computerSelection === 'ROCK')
         || (playerSelection === 'SCISSORS' && computerSelection === 'PAPER')) {
-        //return `You Win! ${playerSelection} beats ${computerSelection}.`
         return 'WIN'
     }
     // Player Lose
     else {
-        // return `You lose ${computerSelection} beats ${playerSelection}.`
         return 'LOSE'
     }
 }
@@ -45,7 +42,7 @@ let computerWins = 0;
 function game() {
 
     const promptPlayer = () => prompt("Rock, Paper or Scissors?", `${computerPlay()}`);
-    const playerSelection = promptUser();
+    
     const computerSelection = computerPlay();
 
     function roundCount(roundResult) {
@@ -58,7 +55,7 @@ function game() {
                 break;
             case 'LOSE':
                 computerWins++;
-                console.log(`You lose this round! ${playerSelection} beats ${computerSelection}.`);
+                console.log(`You lose this round! ${computerSelection} beats ${playerSelection}.`);
                 break;
 
             case 'DRAW':
@@ -70,7 +67,8 @@ function game() {
     }
 
     function gameCount() {
-        roundCount(playRound(promptPlayer(), computerSelection));
+        playerSelection = promptPlayer();
+        roundCount(playRound(playerSelection, computerSelection));
         console.log(`Player Win: ${playerWins} Lose: ${computerWins}`);
     }
 
@@ -79,6 +77,16 @@ function game() {
     gameCount();
     gameCount();
     gameCount();
+
+    if (playerWins > computerWins) {
+        console.log(`Congratulations! You won by ${playerWins-computerWins}.`)
+    }
+    else if (playerWins == 0 && computerWins == 0) {
+        console.log(`You both drew 5 times, how odd.`)
+    }
+    else {
+        console.log(`Tough luck, the Computer won by ${computerWins-playerWins}`)
+    }
 }
 
 game();
