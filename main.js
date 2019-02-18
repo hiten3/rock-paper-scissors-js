@@ -70,7 +70,7 @@ function game() {
     }
 
     function gameCount() {
-        roundCount(playRound(promptUser(), computerSelection));
+        roundCount(playRound(promptPlayer(), computerSelection));
         console.log(`Player Win: ${playerWins} Lose: ${computerWins}`);
     }
 
