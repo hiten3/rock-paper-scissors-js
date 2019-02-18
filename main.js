@@ -44,11 +44,13 @@ let computerWins = 0;
 
 function game() {
 
-
-    let playerSelection = prompt("Rock, Paper or Scissors?", `${computerPlay()}`)
+    const promptPlayer = () => prompt("Rock, Paper or Scissors?", `${computerPlay()}`);
+    const playerSelection = promptUser();
     const computerSelection = computerPlay();
 
     function roundCount(roundResult) {
+        console.log(`playerSelection is ${playerSelection}`);
+
         switch (roundResult) {
             case 'WIN':
                 playerWins++;
@@ -56,7 +58,7 @@ function game() {
                 break;
             case 'LOSE':
                 computerWins++;
-                console.log(`You win this round! ${playerSelection} beats ${computerSelection}.`);
+                console.log(`You lose this round! ${playerSelection} beats ${computerSelection}.`);
                 break;
 
             case 'DRAW':
@@ -67,14 +69,16 @@ function game() {
         }
     }
 
-    roundCount(playRound(playerSelection, computerSelection));
-    console.log(`Player Win: ${playerWins} Lose: ${computerWins}`)
+    function gameCount() {
+        roundCount(playRound(promptUser, computerSelection));
+        console.log(`Player Win: ${playerWins} Lose: ${computerWins}`);
+    }
 
-
+    gameCount();
+    gameCount();
+    gameCount();
+    gameCount();
+    gameCount();
 }
 
-game();
-game();
-game();
-game();
 game();
