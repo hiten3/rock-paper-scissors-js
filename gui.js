@@ -74,12 +74,6 @@ function game() {
       console.log(`Player Win: ${playerWins} Lose: ${computerWins}`);
   }
 
-  gameCount();
-  gameCount();
-  gameCount();
-  gameCount();
-  gameCount();
-
   if (playerWins > computerWins) {
       console.log(`Congratulations! You won by ${playerWins-computerWins}.`)
   }
