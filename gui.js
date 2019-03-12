@@ -4,15 +4,15 @@ function computerPlay() {
   let randNum = Math.floor(Math.random() * 3 + 1);
 
   switch (randNum) {
-      case 1:
-          return "ROCK"
-          break;
-      case 2:
-          return "PAPER"
-          break;
-      case 3:
-          return "SCISSORS"
-          break;
+    case 1:
+      return "ROCK"
+      break;
+    case 2:
+      return "PAPER"
+      break;
+    case 3:
+      return "SCISSORS"
+      break;
   }
 }
 
@@ -22,67 +22,92 @@ function playRound(playerSelection, computerSelection) {
 
   // Player Draw
   if (playerSelection === computerSelection) {
-      return 'DRAW'
+    return 'DRAW'
   }
   // Player Win
   else if ((playerSelection === 'ROCK' && computerSelection === 'SCISSORS')
-      || (playerSelection === 'PAPER' && computerSelection === 'ROCK')
-      || (playerSelection === 'SCISSORS' && computerSelection === 'PAPER')) {
-      return 'WIN'
+    || (playerSelection === 'PAPER' && computerSelection === 'ROCK')
+    || (playerSelection === 'SCISSORS' && computerSelection === 'PAPER')) {
+    return 'WIN'
   }
   // Player Lose
   else {
-      return 'LOSE'
+    return 'LOSE'
   }
 }
 
+btnGame();
 
+function btnGame() {
 
-function game() {
-  
+  const buttons = document.querySelectorAll('button');
+  buttons.forEach((button) => {
+    button.addEventListener('click', playOneRound(button));
+  });
+
+  const container = document.querySelector('#container');
+
   let playerWins = 0;
   let computerWins = 0;
 
-
-  const promptPlayer = () => prompt("Rock, Paper or Scissors?", `${computerPlay()}`);
-
-  function evaluateRound(roundResult) {
-      console.log(`playerSelection is ${playerSelection}`);
-
-      switch (roundResult) {
-          case 'WIN':
-              playerWins++;
-              console.log(`You win this round! ${playerSelection} beats ${computerSelection}.`);
-              break;
-          case 'LOSE':
-              computerWins++;
-              console.log(`You lose this round! ${computerSelection} beats ${playerSelection}.`);
-              break;
-
-          case 'DRAW':
-              console.log(`You both have ${playerSelection}. It's a Draw.`);
-              break;
-          default:
-              break;
-      }
+  function playOneRound(button) {
+    return (e) => {
+      const playerSelection = button.id;
+      const computerSelection = computerPlay();
+      const roundResult = playRound(playerSelection, computerSelection);
+      printText(`playerSelection is ${playerSelection}`);
+      printText(`computerSelection is ${computerSelection}`) 
+      evaluateRound(playerSelection, computerSelection, roundResult);
+    };
   }
 
-  function gameCount() {
-      playerSelection = promptPlayer();
-      computerSelection = computerPlay();
-      evaluateRound(playRound(playerSelection, computerSelection));
-      console.log(`Player Win: ${playerWins} Lose: ${computerWins}`);
+  function printText(string) {
+    const textContainer = document.createElement('p');
+    textContainer.classList.add = "printconsole"
+    textContainer.textContent = string
+    container.appendChild(textContainer);}
+
+  function evaluateRound(playerSelection, computerSelection, roundResult) {
+    
+
+    switch (roundResult) {
+      case 'WIN':
+        playerWins++;
+        // const winTextContainer = document.createElement('p');
+        printText(`You win this round! ${playerSelection} beats ${computerSelection}.`);
+        // winTextContainer.appendChild(winText);
+        // container.appendChild(winTextContainer);
+        break;
+      case 'LOSE':
+        computerWins++;
+        // const loseTextContainer = document.createElement('p');
+        printText(`You lose this round! ${computerSelection} beats ${playerSelection}.`);
+        // loseTextContainer.appendChild(loseText);
+        // container.appendChild(loseTextContainer);
+        break;
+
+      case 'DRAW':
+        // const drawTextContainer = document.createElement('p');
+        printText(`You both have ${playerSelection}. It's a Draw.`);
+        // drawTextContainer.appendChild(drawText);
+        // container.appendChild(drawTextContainer);
+        break;
+      default:
+        break;
+    }
+    }
   }
 
-  if (playerWins > computerWins) {
-      console.log(`Congratulations! You won by ${playerWins-computerWins}.`)
-  }
-  else if (playerWins == 0 && computerWins == 0) {
-      console.log(`You both drew 5 times, how odd.`)
-  }
-  else {
-      console.log(`Tough luck, the Computer won by ${computerWins-playerWins}`)
-  }
-}
+  // if (playerWins > computerWins) {
+  //   console.log(`Congratulations! You won by ${playerWins - computerWins}.`)
+  // }
+  // else if (playerWins == 0 && computerWins == 0) {
+  //   console.log(`You both drew 5 times, how odd.`)
+  // }
+  // else {
+  //   console.log(`Tough luck, the Computer won by ${computerWins - playerWins}`)
+  // }
 
-game();
+
+
+
