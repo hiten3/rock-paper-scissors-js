@@ -39,10 +39,14 @@ function playRound(playerSelection, computerSelection) {
 const container = document.querySelector('#container');
 
 function printText(string) {
-  const oldMessages = document.querySelector("div > .printconsole");
-  console.log(oldMessages);
+  // remove old message
+  const node = container.firstChild;
+  if (node) {
+  node.parentNode.removeChild(node);
+  }
+  // add p element with new message
   const textContainer = document.createElement('p');
-  textContainer.classList.add = "printconsole"
+  textContainer.setAttribute = "#printconsole"
   textContainer.textContent = string
   container.appendChild(textContainer);
 }
