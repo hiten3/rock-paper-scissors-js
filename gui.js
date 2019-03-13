@@ -36,7 +36,19 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+const container = document.querySelector('#container');
+
+function printText(string) {
+  const oldMessages = document.querySelector("div > .printconsole");
+  console.log(oldMessages);
+  const textContainer = document.createElement('p');
+  textContainer.classList.add = "printconsole"
+  textContainer.textContent = string
+  container.appendChild(textContainer);
+}
+
 btnGame();
+
 
 function btnGame() {
 
@@ -45,10 +57,6 @@ function btnGame() {
     button.addEventListener('click', playOneRound(button));
   });
 
-  const container = document.querySelector('#container');
-
-  let playerWins = 0;
-  let computerWins = 0;
 
   function playOneRound(button) {
     return (e) => {
@@ -56,58 +64,61 @@ function btnGame() {
       const computerSelection = computerPlay();
       const roundResult = playRound(playerSelection, computerSelection);
       printText(`playerSelection is ${playerSelection}`);
-      printText(`computerSelection is ${computerSelection}`) 
-      evaluateRound(playerSelection, computerSelection, roundResult);
+      printText(`computerSelection is ${computerSelection}`)
+      printText(evaluateRound(roundResult));
+      updateScore();
+      if (playerWins === 5||computerWins === 5) {
+        countWins(playerWins, computerWins);
+      }
     };
   }
 
-  function printText(string) {
-    const textContainer = document.createElement('p');
-    textContainer.classList.add = "printconsole"
-    textContainer.textContent = string
-    container.appendChild(textContainer);}
-
-  function evaluateRound(playerSelection, computerSelection, roundResult) {
-    
-
+// this function increments the appropriate win variable and returns the appropriate message
+  function evaluateRound(roundResult) {
     switch (roundResult) {
       case 'WIN':
         playerWins++;
-        // const winTextContainer = document.createElement('p');
-        printText(`You win this round! ${playerSelection} beats ${computerSelection}.`);
-        // winTextContainer.appendChild(winText);
-        // container.appendChild(winTextContainer);
+        return `You win this round!`;
+
         break;
       case 'LOSE':
         computerWins++;
-        // const loseTextContainer = document.createElement('p');
-        printText(`You lose this round! ${computerSelection} beats ${playerSelection}.`);
-        // loseTextContainer.appendChild(loseText);
-        // container.appendChild(loseTextContainer);
+        return `You lose this round!`;
+
         break;
 
       case 'DRAW':
-        // const drawTextContainer = document.createElement('p');
-        printText(`You both have ${playerSelection}. It's a Draw.`);
-        // drawTextContainer.appendChild(drawText);
-        // container.appendChild(drawTextContainer);
+        return `It's a Draw.`;
+
         break;
       default:
         break;
     }
-    }
   }
-
-  // if (playerWins > computerWins) {
-  //   console.log(`Congratulations! You won by ${playerWins - computerWins}.`)
-  // }
-  // else if (playerWins == 0 && computerWins == 0) {
-  //   console.log(`You both drew 5 times, how odd.`)
-  // }
-  // else {
-  //   console.log(`Tough luck, the Computer won by ${computerWins - playerWins}`)
-  // }
+}
 
 
 
+let playerWins = 0;
+let computerWins = 0;
+
+
+function countWins(playerWins, computerWins) {
+  if (playerWins > computerWins) {
+    printText(`Congratulations! You won by ${playerWins - computerWins}.`);
+  }
+  else if (playerWins == 0 && computerWins == 0) {
+    printText(`You both drew 5 times, how odd.`);
+  }
+  else {
+    printText(`Tough luck, the Computer won by ${computerWins - playerWins}`);
+  }
+}
+
+function updateScore() {
+  playerScore = document.body.querySelector("p > #playerscore");
+  compScore = document.body.querySelector("p > #compscore");
+  playerScore.textContent = `${playerWins}`;
+  compScore.textContent = `${computerWins}`;
+}
 
