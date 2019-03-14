@@ -67,12 +67,17 @@ function btnGame() {
       const playerSelection = button.id;
       const computerSelection = computerPlay();
       const roundResult = playRound(playerSelection, computerSelection);
-      printText(`playerSelection is ${playerSelection}`);
-      printText(`computerSelection is ${computerSelection}`)
+      printText(`You have ${playerSelection}`);
+      printText(`Computer has ${computerSelection}`)
       printText(evaluateRound(roundResult));
       updateScore();
+      // Win/Lose condition
       if (playerWins === 5||computerWins === 5) {
         countWins(playerWins, computerWins);
+        // reset game
+        playerWins = 0;
+        computerWins = 0;
+        updateScore();
       }
     };
   }
@@ -110,9 +115,6 @@ let computerWins = 0;
 function countWins(playerWins, computerWins) {
   if (playerWins > computerWins) {
     printText(`Congratulations! You won by ${playerWins - computerWins}.`);
-  }
-  else if (playerWins == 0 && computerWins == 0) {
-    printText(`You both drew 5 times, how odd.`);
   }
   else {
     printText(`Tough luck, the Computer won by ${computerWins - playerWins}`);

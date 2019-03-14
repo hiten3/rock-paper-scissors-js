@@ -1,0 +1,51 @@
+body {
+  background-color: #A6EBF4;
+  font-size: 16px;
+  display: grid;
+  grid-template-columns: 5vw 1fr 1fr 1fr 5vw;
+  grid-template-rows: 25vh 1fr 1fr 1fr 25vh;
+  justify-items: center;
+}
+
+button {
+  height: 20vh;
+  width: 24vw;
+  margin: 2px;
+  font-size: 16px;
+}
+
+#rock {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  background-color: #DACFD1;
+}
+
+#paper {
+  grid-column-start: 3;
+  grid-row-start: 2;
+  background-color: #FCFCFF;
+}
+
+#scissors {
+  grid-column-start: 4;
+  grid-row-start: 2;
+  background-color: #FE6D64;
+}
+
+#ps {
+  grid-column-start: 2;
+  grid-row-start: 4;
+  width: 10vw;
+  
+}
+
+#cs {
+  grid-column-start: 4;
+  grid-row-start: 4;
+  width: 10vw;
+}
+
+#container {
+  grid-column-start: 3;
+  grid-row-start: 4;
+}
