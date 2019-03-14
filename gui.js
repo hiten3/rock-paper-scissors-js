@@ -69,7 +69,7 @@ function btnGame() {
       const roundResult = playRound(playerSelection, computerSelection);
       printText(`You have ${playerSelection}`);
       printText(`Computer has ${computerSelection}`)
-      printText(evaluateRound(roundResult));
+      printText(evaluateRound(roundResult, computerSelection));
       updateScore();
       // Win/Lose condition
       if (playerWins === 5||computerWins === 5) {
@@ -83,21 +83,21 @@ function btnGame() {
   }
 
 // this function increments the appropriate win variable and returns the appropriate message
-  function evaluateRound(roundResult) {
+  function evaluateRound(roundResult, computerSelection) {
     switch (roundResult) {
       case 'WIN':
         playerWins++;
-        return `You win this round!`;
+        return `Computer has ${computerSelection}. You win this round!`;
 
         break;
       case 'LOSE':
         computerWins++;
-        return `You lose this round!`;
+        return `Computer has ${computerSelection}. You lose this round!`;
 
         break;
 
       case 'DRAW':
-        return `It's a Draw.`;
+        return `Computer has ${computerSelection}. It's a Draw.`;
 
         break;
       default:
