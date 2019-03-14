@@ -3,7 +3,7 @@ body {
   font-size: 16px;
   display: grid;
   grid-template-columns: 5vw 1fr 1fr 1fr 5vw;
-  grid-template-rows: 25vh 1fr 1fr 1fr 1fr 25vh;
+  grid-template-rows: 25vh 3em 1fr 1fr 1fr;
   grid-gap: 1vh;
   justify-items: center;
   color: #434542;
