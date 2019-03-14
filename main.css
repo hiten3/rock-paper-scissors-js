@@ -3,8 +3,11 @@ body {
   font-size: 16px;
   display: grid;
   grid-template-columns: 5vw 1fr 1fr 1fr 5vw;
-  grid-template-rows: 25vh 1fr 1fr 1fr 25vh;
+  grid-template-rows: 25vh 1fr 1fr 1fr 1fr 25vh;
+  grid-gap: 1vh;
   justify-items: center;
+  color: #434542;
+  font-family: 'Cabin', sans-serif;
 }
 
 button {
@@ -12,27 +15,32 @@ button {
   width: 24vw;
   margin: 2px;
   font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  
 }
 
 #rock {
   grid-column-start: 2;
-  grid-row-start: 2;
+  grid-row-start: 3;
   background-color: #DACFD1;
 }
 
 #paper {
   grid-column-start: 3;
-  grid-row-start: 2;
+  grid-row-start: 3;
   background-color: #FCFCFF;
 }
 
 #scissors {
   grid-column-start: 4;
-  grid-row-start: 2;
+  grid-row-start: 3;
   background-color: #FE6D64;
 }
 
 #ps {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
   grid-column-start: 2;
   grid-row-start: 4;
   width: 10vw;
@@ -40,6 +48,9 @@ button {
 }
 
 #cs {
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
   grid-column-start: 4;
   grid-row-start: 4;
   width: 10vw;
@@ -48,4 +59,15 @@ button {
 #container {
   grid-column-start: 3;
   grid-row-start: 4;
+  text-align: center;
 }
+
+.headings {
+  grid-column-start: 2 ;
+  grid-column-end: span 3;
+  grid-row-start: 1;
+  font-size: 1rem;
+  text-align: center;
+}
+
+
